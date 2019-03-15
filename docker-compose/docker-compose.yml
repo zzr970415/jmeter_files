@@ -29,10 +29,3 @@ services:
     ports:
     - 10991:1099/tcp
     - 50000:50000/tcp
-
-network:
-  jmeter-net:
-    ipam:
-      config:
-      - subnet: 172.21.0.0/16
-        gateway: 172.21.0.1
