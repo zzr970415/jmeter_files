@@ -1,0 +1,38 @@
+version: '2'
+services:
+  master:
+    image: rn.api.xiaoyuanhao.com:56109/nbugs/jmeter_master:latest
+    stdin_open: true
+    tty: true
+    networks:
+      jmeter-net:
+        ipv4_address: 172.21.0.10
+    ports:
+    - 60000:60000/tcp
+  slave01:
+    image: rn.api.xiaoyuanhao.com:56109/nbugs/jmeter_slave:latest
+    stdin_open: true
+    tty: true
+    networks:
+      jmeter-net:
+        ipv4_address: 172.21.0.11
+    ports:
+    - 10991:1099/tcp
+    - 50000:50000/tcp
+  slave02:
+    image: rn.api.xiaoyuanhao.com:56109/nbugs/jmeter_slave:latest
+    stdin_open: true
+    tty: true
+    networks:
+      jmeter-net:
+        ipv4_address: 172.21.0.12
+    ports:
+    - 10991:1099/tcp
+    - 50000:50000/tcp
+
+network:
+  jmeter-net:
+    ipam:
+      config:
+      - subnet: 172.21.0.0/16
+        gateway: 172.21.0.1
